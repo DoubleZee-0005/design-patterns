@@ -1,6 +1,8 @@
 <?php
 namespace App\FactoryPattern;
 
+use Exception;
+use Symfony\Component\HttpFoundation\Response;
 use App\FactoryPattern\Providers\GoogleProvider;
 use App\FactoryPattern\Providers\FacebookProvider;
 use App\FactoryPattern\Contracts\SocialLoginProvider;
@@ -17,7 +19,7 @@ class SocialLoginFactory
             case 'twitter':
                 return new TwitterAkaXProvider();
             default:
-                throw new Exception('Unsupported provider');
+                throw new Exception('Unsupported provider', Response::HTTP_BAD_REQUEST);
         }
     }
 }
